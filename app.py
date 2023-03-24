@@ -21,6 +21,9 @@ def display_file(filename):
             else:
                 lines = file.readlines()
             return render_template('file.html', filename=filename, lines=lines)
+    except FileNotFoundError:
+        error_msg = f"The file '{filename}' does not exist."
+        return render_template('error.html', error=error_msg)
     except Exception as e:
         return render_template('error.html', error=e)
 
